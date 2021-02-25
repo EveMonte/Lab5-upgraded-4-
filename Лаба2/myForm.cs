@@ -35,10 +35,11 @@ namespace Лаба2
             XmlSerializer xser = new XmlSerializer(typeof(List<Discipline>));
             using (FileStream fileStream = new FileStream("Forms.xml", FileMode.OpenOrCreate))
             {
-                List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
-                Control[] tabPages = new Control[newListOfDisciplines.Count];
-
-                foreach (Discipline dis in newListOfDisciplines)
+                //List<Discipline> newListOfDisciplines = (List<Discipline>)xser.Deserialize(fileStream);
+                //Control[] tabPages = new Control[newListOfDiscipline.Count];
+                Control[] tabPages = new Control[Form1.history.History.Count];
+                //foreach (Discipline dis in newListOfDisciplines)
+                foreach (Memento dis in Form1.history.History)
                 {
                     tabPage = new TabPage();
                     tabPage.Text = "Page" + i;
@@ -130,6 +131,11 @@ namespace Лаба2
                 this.Controls.AddRange(new Control[] {
     this.tabControl});
             }
+
+        }
+
+        private void myForm_Load(object sender, EventArgs e)
+        {
 
         }
     }

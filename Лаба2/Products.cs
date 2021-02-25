@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace Лаба2
 {
+
     //Конкретные продукты
     [Serializable]
     public class Book : IAbstractBook

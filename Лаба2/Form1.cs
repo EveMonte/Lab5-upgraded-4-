@@ -17,7 +17,8 @@ namespace Лаба2
     public partial class Form1 : Form
     {
         List<Discipline> listOfDisciplines = new List<Discipline>();
-
+        public static DisciplineHistory history = new DisciplineHistory();
+        int i = 0;
         public Form1()
         {
             InitializeComponent();
@@ -44,9 +45,19 @@ namespace Лаба2
                 default: discipline = new Discipline();
                     break;
             }
-            DisciplineHistory history = new DisciplineHistory();
+            if (checkBox1.Checked)
+            {
+                Decorator decorator = new Decorator(discipline);
+                decorator.dateOfBirth = dateTimePicker2.Value;
+                MessageBox.Show(decorator.dateOfBirth.ToString());
+            }
             history.History.Push(discipline.SaveState());
-
+            /*if(i == 2)
+            {
+                //history.History.Pop();
+                discipline.RestoreState(history.History.Pop());
+            }*/
+            i++;
             listOfDisciplines.Add(discipline);
             listOfDisciplines.Add(discipline.ShallowCopy());
             listOfDisciplines.Add(discipline.DeepCopy());
@@ -80,6 +91,15 @@ namespace Лаба2
         {
             myForm form = new myForm();
             form.Show();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                dateTimePicker2.Visible = true;
+            }
+            else dateTimePicker2.Visible = false;
         }
     }
 }
